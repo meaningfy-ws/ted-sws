@@ -5,63 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML report for SPARQL Validation</title>
-    <style type="text/css">
-        body {
-            font-family: Arial, sans-serif;
-        }
-        table{
-            border-spacing: 1px;
-            border-collapse: separate;
-        }
-        th, td {
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-        th {
-            background-color: #000;
-            color: white;
-        }
-        tr:nth-child(even) {background-color: #f2f2f2;}
-        tr:hover {background-color: #ddd;}
-        .error {
-            color: red;
-        }
-        .success {
-            color: green;
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css">
+    <link href="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <style>
+        #report {
+            padding: 25px;
         }
     </style>
   </head>
   <body>
-	<h1>SPARQL Validation HTML report </h1>
-	<hr>
-    <h2>Report details: </h2>
-    <ul>
-        <li>Date created: {{ created }}</li>
-        <li>{% if test_identifier_label %}{{ test_identifier_label }}{% else %}SPARQL test suite identifier{% endif %}:
-        {{ sparql_test_suite_identifier }}</li>
-        <li>Mapping suite identifier: {{ mapping_suite_identifier }}</li>
-    </ul>
-    <hr>
-    <h2>Results</h2>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Query content</th>
-            <th>Result</th>
-            <th>Error</th>
-        </tr>
-        {% for result in execution_results %}
+    <div id="report">
+        <h1>SPARQL Validation HTML report </h1>
+        <hr>
+        <h2>Report details: </h2>
+        <ul>
+            <li>Date created: {{ created }}</li>
+            <li>{% if test_identifier_label %}{{ test_identifier_label }}{% else %}SPARQL test suite identifier{% endif %}:
+            {{ sparql_test_suite_identifier }}</li>
+            <li>Mapping suite identifier: {{ mapping_suite_identifier }}</li>
+        </ul>
+        <hr>
+        <h2>Results</h2>
+        <table class="display">
+            <thead>
             <tr>
-                <td>{{ result.query.title }}</td>
-                <td>{{ result.query.description }}</td>
-                <td>{{ result.query.query | replace('\n', '<br>') }}</td>
-                <td{% if result.result == "True" %} class="success"{% endif %}>{{ result.result }}</td>
-                <td>{{ result.error }}</td>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Query content</th>
+                <th>Result</th>
+                <th>Error</th>
             </tr>
-        {% endfor %}
-    </table>
+            </thead>
+            <tbody>
+            {% for result in execution_results %}
+                <tr>
+                    <td>{{ result.query.title }}</td>
+                    <td>{{ result.query.description }}</td>
+                    <td>{{ result.query.query | replace('\n', '<br>') }}</td>
+                    <td{% if result.result == "True" %} class="success"{% endif %}>{{ result.result }}</td>
+                    <td>{{ result.error }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("table.display").DataTable({
+                dom: 'B<"clear">lfrtip',
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "pageLength": 25,
+                responsive: {
+                    details: true,
+                    breakpoints: [
+                        {name: 'bigdesktop', width: Infinity},
+                        {name: 'meddesktop', width: 1480},
+                        {name: 'smalldesktop', width: 1280},
+                        {name: 'medium', width: 1188},
+                        {name: 'tabletl', width: 1024},
+                        {name: 'btwtabllandp', width: 848},
+                        {name: 'tabletp', width: 768},
+                        {name: 'mobilel', width: 480},
+                        {name: 'mobilep', width: 320}
+                    ]
+                }
+            });
+        });
+    </script>
   </body>
 </html>
