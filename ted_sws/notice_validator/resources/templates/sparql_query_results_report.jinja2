@@ -44,7 +44,7 @@
                     <td>{{ result.query.title }}</td>
                     <td>{{ result.query.description }}</td>
                     <td>{{ result.query.query | replace('\n', '<br>') }}</td>
-                    <td{% if result.result == "True" %} class="success"{% endif %}>{{ result.result }}</td>
+                    <td>{{ result.result }}</td>
                     <td>{{ result.error }}</td>
                 </tr>
             {% endfor %}
