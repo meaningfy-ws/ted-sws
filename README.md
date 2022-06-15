@@ -1,6 +1,17 @@
 # TED Semantic Web Services
 
-<hr>
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=bugs)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=meaningfy-ws_ted-sws&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=meaningfy-ws_ted-sws)
+
+![Doc build](https://github.com/meaningfy-ws/ted-sws/actions/workflows/main.yml/badge.svg?branch=main)
+![UTest build](https://github.com/meaningfy-ws/ted-sws/actions/workflows/unit-tests.yml/badge.svg?branch=main)
+![E2E Test build](https://github.com/meaningfy-ws/ted-sws/actions/workflows/unit-tests-hermes.yml/badge.svg?branch=main)
 
 ## Table of contents
 
@@ -256,6 +267,26 @@ Usage: sparql_runner [OPTIONS] [MAPPING_SUITE_ID]
 
 Options:
   -m, --opt-mappings-folder TEXT
+  --help                                      Show this message and exit.
+```
+
+#### CMD: xpath_coverage_runner
+Generates Coverage Reports for Notices
+
+Use:
+```bash
+xpath_coverage_runner --help
+```
+to get the Usage Help:
+```bash
+Usage: xpath_coverage_runner [OPTIONS] [MAPPING_SUITE_ID]
+
+  Generates Coverage Reports for Notices
+
+Options:
+  -i, --opt-conceptual-mappings-file TEXT     Use to overwrite default INPUT
+  -m, --opt-mappings-folder TEXT
+
   --help                                      Show this message and exit.
 ```
 
